@@ -1,0 +1,616 @@
+student@gb-test:~$ whoami
+student
+student@gb-test:~$ sudo systemctl status sshd.service 
+[sudo] пароль для student: 
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Thu 2021-06-10 22:32:47 MSK; 19min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 588 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 603 (sshd)
+      Tasks: 1 (limit: 1106)
+     Memory: 1.2M
+     CGroup: /system.slice/ssh.service
+             └─603 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+июн 10 22:32:46 gb-test systemd[1]: Starting OpenBSD Secure Shell server...
+июн 10 22:32:47 gb-test sshd[603]: Server listening on 0.0.0.0 port 22.
+июн 10 22:32:47 gb-test sshd[603]: Server listening on :: port 22.
+июн 10 22:32:47 gb-test systemd[1]: Started OpenBSD Secure Shell server.
+student@gb-test:~$ ssh localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:0xspgCQI1MJyVrnclLIC/FfWx939rbNdRkrEVLFdB40.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+student@localhost's password: 
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.8.0-55-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+0 updates can be applied immediately.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+student@gb-test:~$ exit
+выход
+Connection to localhost closed.
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85061sec preferred_lft 85061sec
+    inet6 fe80::9ee3:b655:4778:c801/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.67/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 86390sec preferred_lft 86390sec
+    inet6 fd01::73f6:b769:7b52:c8c0/128 scope global dynamic noprefixroute 
+       valid_lft 292sec preferred_lft 292sec
+    inet6 fe80::9ee3:b655:4778:c801/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+student@gb-test:~$ sudo apt install mysql-server
+Чтение списков пакетов… Готово
+Построение дерева зависимостей       
+Чтение информации о состоянии… Готово
+Будут установлены следующие дополнительные пакеты:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-template-perl libmecab2
+  mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
+  mysql-client-core-8.0 mysql-server-8.0 mysql-server-core-8.0
+Предлагаемые пакеты:
+  libipc-sharedcache-perl mailx tinyca
+Следующие НОВЫЕ пакеты будут установлены:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-template-perl libmecab2
+  mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
+  mysql-client-core-8.0 mysql-server mysql-server-8.0 mysql-server-core-8.0
+Обновлено 0 пакетов, установлено 16 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 31,0 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 258 MB.
+Хотите продолжить? [Д/н] y
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-core-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [4 216 kB]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [22,0 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libaio1 amd64 0.3.112-5 [7 184 B]
+Пол:4 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libevent-core-2.1-7 amd64 2.1.11-stable-1 [89,1 kB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libevent-pthreads-2.1-7 amd64 2.1.11-stable-1 [7 372 B]
+Пол:6 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libmecab2 amd64 0.996-10build1 [233 kB]
+Пол:7 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server-core-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [18,1 MB]
+Пол:8 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [1 282 kB]
+Пол:9 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libcgi-pm-perl all 4.46-1 [186 kB]
+Пол:10 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libfcgi-perl amd64 0.79-1 [33,1 kB]
+Пол:11 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libcgi-fast-perl all 1:2.15-1 [10,5 kB]
+Пол:12 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libhtml-template-perl all 2.97-1 [59,0 kB]
+Пол:13 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-utils amd64 0.996-10build1 [4 912 B]
+Пол:14 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic all 2.7.0-20070801+main-2.1 [6 714 kB]
+Пол:15 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic-utf8 all 2.7.0-20070801+main-2.1 [4 380 B]
+Пол:16 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server all 8.0.25-0ubuntu0.20.04.1 [9 540 B]
+Получено 31,0 MB за 17с (1 807 kB/s)                                           
+Предварительная настройка пакетов …
+Выбор ранее не выбранного пакета mysql-client-core-8.0.
+(Чтение базы данных … на данный момент установлено 169993 файла и каталога.)
+Подготовка к распаковке …/00-mysql-client-core-8.0_8.0.25-0ubuntu0.20.04.1_amd64
+.deb …
+Распаковывается mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета mysql-client-8.0.
+Подготовка к распаковке …/01-mysql-client-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb 
+…
+Распаковывается mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета libaio1:amd64.
+Подготовка к распаковке …/02-libaio1_0.3.112-5_amd64.deb …
+Распаковывается libaio1:amd64 (0.3.112-5) …
+Выбор ранее не выбранного пакета libevent-core-2.1-7:amd64.
+Подготовка к распаковке …/03-libevent-core-2.1-7_2.1.11-stable-1_amd64.deb …
+Распаковывается libevent-core-2.1-7:amd64 (2.1.11-stable-1) …
+Выбор ранее не выбранного пакета libevent-pthreads-2.1-7:amd64.
+Подготовка к распаковке …/04-libevent-pthreads-2.1-7_2.1.11-stable-1_amd64.deb …
+Распаковывается libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) …
+Выбор ранее не выбранного пакета libmecab2:amd64.
+Подготовка к распаковке …/05-libmecab2_0.996-10build1_amd64.deb …
+Распаковывается libmecab2:amd64 (0.996-10build1) …
+Выбор ранее не выбранного пакета mysql-server-core-8.0.
+Подготовка к распаковке …/06-mysql-server-core-8.0_8.0.25-0ubuntu0.20.04.1_amd64
+.deb …
+Распаковывается mysql-server-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета mysql-server-8.0.
+Подготовка к распаковке …/07-mysql-server-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb 
+…
+Распаковывается mysql-server-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета libcgi-pm-perl.
+Подготовка к распаковке …/08-libcgi-pm-perl_4.46-1_all.deb …
+Распаковывается libcgi-pm-perl (4.46-1) …
+Выбор ранее не выбранного пакета libfcgi-perl.
+Подготовка к распаковке …/09-libfcgi-perl_0.79-1_amd64.deb …
+Распаковывается libfcgi-perl (0.79-1) …
+Выбор ранее не выбранного пакета libcgi-fast-perl.
+Подготовка к распаковке …/10-libcgi-fast-perl_1%3a2.15-1_all.deb …
+Распаковывается libcgi-fast-perl (1:2.15-1) …
+Выбор ранее не выбранного пакета libhtml-template-perl.
+Подготовка к распаковке …/11-libhtml-template-perl_2.97-1_all.deb …
+Распаковывается libhtml-template-perl (2.97-1) …
+Выбор ранее не выбранного пакета mecab-utils.
+Подготовка к распаковке …/12-mecab-utils_0.996-10build1_amd64.deb …
+Распаковывается mecab-utils (0.996-10build1) …
+Выбор ранее не выбранного пакета mecab-ipadic.
+Подготовка к распаковке …/13-mecab-ipadic_2.7.0-20070801+main-2.1_all.deb …
+Распаковывается mecab-ipadic (2.7.0-20070801+main-2.1) …
+Выбор ранее не выбранного пакета mecab-ipadic-utf8.
+Подготовка к распаковке …/14-mecab-ipadic-utf8_2.7.0-20070801+main-2.1_all.deb …
+Распаковывается mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) …
+Выбор ранее не выбранного пакета mysql-server.
+Подготовка к распаковке …/15-mysql-server_8.0.25-0ubuntu0.20.04.1_all.deb …
+Распаковывается mysql-server (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libmecab2:amd64 (0.996-10build1) …
+Настраивается пакет mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libcgi-pm-perl (4.46-1) …
+Настраивается пакет libhtml-template-perl (2.97-1) …
+Настраивается пакет mecab-utils (0.996-10build1) …
+Настраивается пакет libevent-core-2.1-7:amd64 (2.1.11-stable-1) …
+Настраивается пакет mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libfcgi-perl (0.79-1) …
+Настраивается пакет libaio1:amd64 (0.3.112-5) …
+Настраивается пакет libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) …
+Настраивается пакет mecab-ipadic (2.7.0-20070801+main-2.1) …
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: используется /var/lib/mecab/dic/ipadic для предоставления /
+var/lib/mecab/dic/debian (mecab-dictionary) в автоматическом режиме
+Настраивается пакет libcgi-fast-perl (1:2.15-1) …
+Настраивается пакет mysql-server-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) …
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: используется /var/lib/mecab/dic/ipadic-utf8 для предоставле
+ния /var/lib/mecab/dic/debian (mecab-dictionary) в автоматическом режиме
+Настраивается пакет mysql-server-8.0 (8.0.25-0ubuntu0.20.04.1) …
+update-alternatives: используется /etc/mysql/mysql.cnf для предоставления /etc/m
+ysql/my.cnf (my.cnf) в автоматическом режиме
+Renaming removed key_buffer and myisam-recover options (if present)
+mysqld will log errors to /var/log/mysql/error.log
+mysqld is running as pid 2741
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib
+/systemd/system/mysql.service.
+Настраивается пакет mysql-server (8.0.25-0ubuntu0.20.04.1) …
+Обрабатываются триггеры для systemd (245.4-4ubuntu3.6) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+Обрабатываются триггеры для libc-bin (2.31-0ubuntu9.2) …
+student@gb-test:~$ whoami
+student
+student@gb-test:~$ sudo systemctl status sshd.service 
+[sudo] пароль для student: 
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Thu 2021-06-10 22:32:47 MSK; 19min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 588 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 603 (sshd)
+      Tasks: 1 (limit: 1106)
+     Memory: 1.2M
+     CGroup: /system.slice/ssh.service
+             └─603 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+июн 10 22:32:46 gb-test systemd[1]: Starting OpenBSD Secure Shell server...
+июн 10 22:32:47 gb-test sshd[603]: Server listening on 0.0.0.0 port 22.
+июн 10 22:32:47 gb-test sshd[603]: Server listening on :: port 22.
+июн 10 22:32:47 gb-test systemd[1]: Started OpenBSD Secure Shell server.
+student@gb-test:~$ ssh localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:0xspgCQI1MJyVrnclLIC/FfWx939rbNdRkrEVLFdB40.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+student@localhost's password: 
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.8.0-55-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+0 updates can be applied immediately.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+student@gb-test:~$ exit
+выход
+Connection to localhost closed.
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85061sec preferred_lft 85061sec
+    inet6 fe80::9ee3:b655:4778:c801/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+student@gb-test:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:30:cf:ee brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.67/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 86390sec preferred_lft 86390sec
+    inet6 fd01::73f6:b769:7b52:c8c0/128 scope global dynamic noprefixroute 
+       valid_lft 292sec preferred_lft 292sec
+    inet6 fe80::9ee3:b655:4778:c801/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+student@gb-test:~$ sudo apt install mysql-server
+Чтение списков пакетов… Готово
+Построение дерева зависимостей       
+Чтение информации о состоянии… Готово
+Будут установлены следующие дополнительные пакеты:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-template-perl libmecab2
+  mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
+  mysql-client-core-8.0 mysql-server-8.0 mysql-server-core-8.0
+Предлагаемые пакеты:
+  libipc-sharedcache-perl mailx tinyca
+Следующие НОВЫЕ пакеты будут установлены:
+  libaio1 libcgi-fast-perl libcgi-pm-perl libevent-core-2.1-7
+  libevent-pthreads-2.1-7 libfcgi-perl libhtml-template-perl libmecab2
+  mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
+  mysql-client-core-8.0 mysql-server mysql-server-8.0 mysql-server-core-8.0
+Обновлено 0 пакетов, установлено 16 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 31,0 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 258 MB.
+Хотите продолжить? [Д/н] y
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-core-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [4 216 kB]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [22,0 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libaio1 amd64 0.3.112-5 [7 184 B]
+Пол:4 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libevent-core-2.1-7 amd64 2.1.11-stable-1 [89,1 kB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libevent-pthreads-2.1-7 amd64 2.1.11-stable-1 [7 372 B]
+Пол:6 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libmecab2 amd64 0.996-10build1 [233 kB]
+Пол:7 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server-core-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [18,1 MB]
+Пол:8 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [1 282 kB]
+Пол:9 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libcgi-pm-perl all 4.46-1 [186 kB]
+Пол:10 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libfcgi-perl amd64 0.79-1 [33,1 kB]
+Пол:11 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libcgi-fast-perl all 1:2.15-1 [10,5 kB]
+Пол:12 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 libhtml-template-perl all 2.97-1 [59,0 kB]
+Пол:13 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-utils amd64 0.996-10build1 [4 912 B]
+Пол:14 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic all 2.7.0-20070801+main-2.1 [6 714 kB]
+Пол:15 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 mecab-ipadic-utf8 all 2.7.0-20070801+main-2.1 [4 380 B]
+Пол:16 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-server all 8.0.25-0ubuntu0.20.04.1 [9 540 B]
+Получено 31,0 MB за 17с (1 807 kB/s)                                           
+Предварительная настройка пакетов …
+Выбор ранее не выбранного пакета mysql-client-core-8.0.
+(Чтение базы данных … на данный момент установлено 169993 файла и каталога.)
+Подготовка к распаковке …/00-mysql-client-core-8.0_8.0.25-0ubuntu0.20.04.1_amd64
+.deb …
+Распаковывается mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета mysql-client-8.0.
+Подготовка к распаковке …/01-mysql-client-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb 
+…
+Распаковывается mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета libaio1:amd64.
+Подготовка к распаковке …/02-libaio1_0.3.112-5_amd64.deb …
+Распаковывается libaio1:amd64 (0.3.112-5) …
+Выбор ранее не выбранного пакета libevent-core-2.1-7:amd64.
+Подготовка к распаковке …/03-libevent-core-2.1-7_2.1.11-stable-1_amd64.deb …
+Распаковывается libevent-core-2.1-7:amd64 (2.1.11-stable-1) …
+Выбор ранее не выбранного пакета libevent-pthreads-2.1-7:amd64.
+Подготовка к распаковке …/04-libevent-pthreads-2.1-7_2.1.11-stable-1_amd64.deb …
+Распаковывается libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) …
+Выбор ранее не выбранного пакета libmecab2:amd64.
+Подготовка к распаковке …/05-libmecab2_0.996-10build1_amd64.deb …
+Распаковывается libmecab2:amd64 (0.996-10build1) …
+Выбор ранее не выбранного пакета mysql-server-core-8.0.
+Подготовка к распаковке …/06-mysql-server-core-8.0_8.0.25-0ubuntu0.20.04.1_amd64
+.deb …
+Распаковывается mysql-server-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета mysql-server-8.0.
+Подготовка к распаковке …/07-mysql-server-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb 
+…
+Распаковывается mysql-server-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Выбор ранее не выбранного пакета libcgi-pm-perl.
+Подготовка к распаковке …/08-libcgi-pm-perl_4.46-1_all.deb …
+Распаковывается libcgi-pm-perl (4.46-1) …
+Выбор ранее не выбранного пакета libfcgi-perl.
+Подготовка к распаковке …/09-libfcgi-perl_0.79-1_amd64.deb …
+Распаковывается libfcgi-perl (0.79-1) …
+Выбор ранее не выбранного пакета libcgi-fast-perl.
+Подготовка к распаковке …/10-libcgi-fast-perl_1%3a2.15-1_all.deb …
+Распаковывается libcgi-fast-perl (1:2.15-1) …
+Выбор ранее не выбранного пакета libhtml-template-perl.
+Подготовка к распаковке …/11-libhtml-template-perl_2.97-1_all.deb …
+Распаковывается libhtml-template-perl (2.97-1) …
+Выбор ранее не выбранного пакета mecab-utils.
+Подготовка к распаковке …/12-mecab-utils_0.996-10build1_amd64.deb …
+Распаковывается mecab-utils (0.996-10build1) …
+Выбор ранее не выбранного пакета mecab-ipadic.
+Подготовка к распаковке …/13-mecab-ipadic_2.7.0-20070801+main-2.1_all.deb …
+Распаковывается mecab-ipadic (2.7.0-20070801+main-2.1) …
+Выбор ранее не выбранного пакета mecab-ipadic-utf8.
+Подготовка к распаковке …/14-mecab-ipadic-utf8_2.7.0-20070801+main-2.1_all.deb …
+Распаковывается mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) …
+Выбор ранее не выбранного пакета mysql-server.
+Подготовка к распаковке …/15-mysql-server_8.0.25-0ubuntu0.20.04.1_all.deb …
+Распаковывается mysql-server (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libmecab2:amd64 (0.996-10build1) …
+Настраивается пакет mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libcgi-pm-perl (4.46-1) …
+Настраивается пакет libhtml-template-perl (2.97-1) …
+Настраивается пакет mecab-utils (0.996-10build1) …
+Настраивается пакет libevent-core-2.1-7:amd64 (2.1.11-stable-1) …
+Настраивается пакет mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет libfcgi-perl (0.79-1) …
+Настраивается пакет libaio1:amd64 (0.3.112-5) …
+Настраивается пакет libevent-pthreads-2.1-7:amd64 (2.1.11-stable-1) …
+Настраивается пакет mecab-ipadic (2.7.0-20070801+main-2.1) …
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: используется /var/lib/mecab/dic/ipadic для предоставления /
+var/lib/mecab/dic/debian (mecab-dictionary) в автоматическом режиме
+Настраивается пакет libcgi-fast-perl (1:2.15-1) …
+Настраивается пакет mysql-server-core-8.0 (8.0.25-0ubuntu0.20.04.1) …
+Настраивается пакет mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) …
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: используется /var/lib/mecab/dic/ipadic-utf8 для предоставле
+ния /var/lib/mecab/dic/debian (mecab-dictionary) в автоматическом режиме
+Настраивается пакет mysql-server-8.0 (8.0.25-0ubuntu0.20.04.1) …
+update-alternatives: используется /etc/mysql/mysql.cnf для предоставления /etc/m
+ysql/my.cnf (my.cnf) в автоматическом режиме
+Renaming removed key_buffer and myisam-recover options (if present)
+mysqld will log errors to /var/log/mysql/error.log
+mysqld is running as pid 2741
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib
+/systemd/system/mysql.service.
+Настраивается пакет mysql-server (8.0.25-0ubuntu0.20.04.1) …
+Обрабатываются триггеры для systemd (245.4-4ubuntu3.6) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+Обрабатываются триггеры для libc-bin (2.31-0ubuntu9.2) …
+student@gb-test:~$ sudo systemctl status mysql.service 
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset:>
+     Active: active (running) since Thu 2021-06-10 23:08:35 MSK; 3min 12s ago
+   Main PID: 2939 (mysqld)
+     Status: "Server is operational"
+      Tasks: 37 (limit: 1106)
+     Memory: 314.2M
+     CGroup: /system.slice/mysql.service
+             └─2939 /usr/sbin/mysqld
+
+июн 10 23:08:33 gb-test systemd[1]: Starting MySQL Community Server...
+июн 10 23:08:35 gb-test systemd[1]: Started MySQL Community Server.
+student@gb-test:~$ mysql -V
+mysql  Ver 8.0.25-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
+student@gb-test:~$ mysqld -V
+/usr/sbin/mysqld  Ver 8.0.25-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
+student@gb-test:~$ sudo mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'my8sql';
+Query OK, 0 rows affected (0,41 sec)
+
+mysql> FLUSH PRIVILEGES
+    -> FLUSH PRIVILEGES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FLUSH PRIVILEGES' at line 2
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0,10 sec)
+
+mysql> exit
+Bye
+student@gb-test:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0,36 sec)
+
+mysql> exit
+Bye
